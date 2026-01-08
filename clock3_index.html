@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8" />
+  <title>clock</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400&display=swap" rel="stylesheet">
+  <style>
+    html {
+      height: 100%;
+      width: 100%;
+      font-family: 'Oswald',HGGothicE;
+      overflow: hidden;
+    }
+    body {
+      height: 100%;
+      width: 100%;
+      margin: 0;
+      background: repeating-linear-gradient(#008000, #008000 34vh, #3cb371 34vh, #3cb371 68vh);
+      position: relative;
+    }
+    .bg {
+      height: 100%;
+      width: 100%;
+      position: absolute;
+      background-image: url(./bg/clock_bg_w.svg);
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-position: left top;
+      opacity 1;
+    }
+    .av {
+      height: 100%;
+      width: 100%;
+      position: absolute;
+      background-image: url(./avatar/notfound.png);
+      background-size: 702px 1439px;
+      background-repeat: no-repeat;
+      background-position: clamp(-140px, 50vw - 750px, -10px) clamp(-450px, 50vh - 800px, -380px);
+      filter: drop-shadow(30px 0px 10px rgba(32, 32, 32, 0.8));
+      opacity 1;
+    }
+    .outer {
+      height: 100%;
+      width: 100%;
+      position: absolute;
+      text-align: center;
+    }
+    .inner {
+      position: absolute;
+      right: 0;
+      bottom: 0;
+      margin: 0 2vw 0 0;
+      font-size: min(100vh, 34vw);
+      letter-spacing : -2vw;
+      text-indent: -2vw;
+      color: #004d4d;
+      -webkit-text-stroke: 7px #ffffff;
+    }
+  </style>
+  <script>
+    const jsontxt = `
+{
+  "avatar_list": [
+    { "name": "url(./avatar/a01-0000.png)", "color": "url(./bg/clock_bg_o.svg)" }
+   ,{ "name": "url(./avatar/a03-0000.png)", "color": "url(./bg/clock_bg_g.svg)" }
+   ,{ "name": "url(./avatar/a04-0000.png)", "color": "url(./bg/clock_bg_y.svg)" }
+   ,{ "name": "url(./avatar/a05-0000.png)", "color": "url(./bg/clock_bg_p.svg)" }
+   ,{ "name": "url(./avatar/a06-0000.png)", "color": "url(./bg/clock_bg_p.svg)" }
+   ,{ "name": "url(./avatar/a07-0000.png)", "color": "url(./bg/clock_bg_r.svg)" }
+   ,{ "name": "url(./avatar/a08-0000.png)", "color": "url(./bg/clock_bg_0.svg)" }
+   ,{ "name": "url(./avatar/a09-0000.png)", "color": "url(./bg/clock_bg_b.svg)" }
+   ,{ "name": "url(./avatar/a10-0000.png)", "color": "url(./bg/clock_bg_o.svg)" }
+   ,{ "name": "url(./avatar/a11-0000.png)", "color": "url(./bg/clock_bg_r.svg)" }
+   ,{ "name": "url(./avatar/a12-0000.png)", "color": "url(./bg/clock_bg_b.svg)" }
+   ,{ "name": "url(./avatar/a13-0000.png)", "color": "url(./bg/clock_bg_b.svg)" }
+   ,{ "name": "url(./avatar/a14-0000.png)", "color": "url(./bg/clock_bg_b.svg)" }
+   ,{ "name": "url(./avatar/a15-0000.png)", "color": "url(./bg/clock_bg_b.svg)" }
+   ,{ "name": "url(./avatar/a16-0000.png)", "color": "url(./bg/clock_bg_y.svg)" }
+   ,{ "name": "url(./avatar/a17-0000.png)", "color": "url(./bg/clock_bg_p.svg)" }
+   ,{ "name": "url(./avatar/a18-0000.png)", "color": "url(./bg/clock_bg_b.svg)" }
+   ,{ "name": "url(./avatar/a19-0000.png)", "color": "url(./bg/clock_bg_p.svg)" }
+   ,{ "name": "url(./avatar/a20-0000.png)", "color": "url(./bg/clock_bg_0.svg)" }
+   ,{ "name": "url(./avatar/a22-0000.png)", "color": "url(./bg/clock_bg_o.svg)" }
+   ,{ "name": "url(./avatar/b01-0000.png)", "color": "url(./bg/clock_bg_r.svg)" }
+   ,{ "name": "url(./avatar/c01-0000.png)", "color": "url(./bg/clock_bg_r.svg)" }
+   ,{ "name": "url(./avatar/c02-0000.png)", "color": "url(./bg/clock_bg_b.svg)" }
+   ,{ "name": "url(./avatar/c04-0000.png)", "color": "url(./bg/clock_bg_b.svg)" }
+   ,{ "name": "url(./avatar/c05-0000.png)", "color": "url(./bg/clock_bg_0.svg)" }
+   ,{ "name": "url(./avatar/c06-0000.png)", "color": "url(./bg/clock_bg_p.svg)" }
+   ,{ "name": "url(./avatar/c07-0000.png)", "color": "url(./bg/clock_bg_w.svg)" }
+   ,{ "name": "url(./avatar/c08-0000.png)", "color": "url(./bg/clock_bg_w.svg)" }
+   ,{ "name": "url(./avatar/c09-0000.png)", "color": "url(./bg/clock_bg_r.svg)" }
+   ,{ "name": "url(./avatar/c11-0000.png)", "color": "url(./bg/clock_bg_w.svg)" }
+   ,{ "name": "url(./avatar/c12-0000.png)", "color": "url(./bg/clock_bg_y.svg)" }
+   ,{ "name": "url(./avatar/c13-0000.png)", "color": "url(./bg/clock_bg_p.svg)" }
+   ,{ "name": "url(./avatar/c15-0000.png)", "color": "url(./bg/clock_bg_p.svg)" }
+   ,{ "name": "url(./avatar/c16-0000.png)", "color": "url(./bg/clock_bg_b.svg)" }
+   ,{ "name": "url(./avatar/c17-0000.png)", "color": "url(./bg/clock_bg_p.svg)" }
+   ,{ "name": "url(./avatar/c18-0000.png)", "color": "url(./bg/clock_bg_p.svg)" }
+   ,{ "name": "url(./avatar/c19-0000.png)", "color": "url(./bg/clock_bg_b.svg)" }
+   ,{ "name": "url(./avatar/c20-0000.png)", "color": "url(./bg/clock_bg_b.svg)" }
+   ,{ "name": "url(./avatar/c21-0000.png)", "color": "url(./bg/clock_bg_w.svg)" }
+   ,{ "name": "url(./avatar/c22-0000.png)", "color": "url(./bg/clock_bg_w.svg)" }
+   ,{ "name": "url(./avatar/c23-0000.png)", "color": "url(./bg/clock_bg_w.svg)" }
+   ,{ "name": "url(./avatar/c24-0000.png)", "color": "url(./bg/clock_bg_g.svg)" }
+   ,{ "name": "url(./avatar/c25-0000.png)", "color": "url(./bg/clock_bg_w.svg)" }
+   ,{ "name": "url(./avatar/c26-0000.png)", "color": "url(./bg/clock_bg_b.svg)" }
+   ,{ "name": "url(./avatar/c27-0000.png)", "color": "url(./bg/clock_bg_y.svg)" }
+   ,{ "name": "url(./avatar/c28-0000.png)", "color": "url(./bg/clock_bg_w.svg)" }
+   ,{ "name": "url(./avatar/c29-0000.png)", "color": "url(./bg/clock_bg_p.svg)" }
+   ,{ "name": "url(./avatar/c30-0000.png)", "color": "url(./bg/clock_bg_0.svg)" }
+   ,{ "name": "url(./avatar/c31-0000.png)", "color": "url(./bg/clock_bg_0.svg)" }
+   ,{ "name": "url(./avatar/c33-0000.png)", "color": "url(./bg/clock_bg_b.svg)" }
+   ,{ "name": "url(./avatar/c34-0000.png)", "color": "url(./bg/clock_bg_b.svg)" }
+   ,{ "name": "url(./avatar/c35-0000.png)", "color": "url(./bg/clock_bg_b.svg)" }
+   ,{ "name": "url(./avatar/c36-0000.png)", "color": "url(./bg/clock_bg_y.svg)" }
+   ,{ "name": "url(./avatar/c37-0000.png)", "color": "url(./bg/clock_bg_p.svg)" }
+   ,{ "name": "url(./avatar/c38-0000.png)", "color": "url(./bg/clock_bg_w.svg)" }
+   ,{ "name": "url(./avatar/c39-0000.png)", "color": "url(./bg/clock_bg_b.svg)" }
+   ,{ "name": "url(./avatar/c40-0000.png)", "color": "url(./bg/clock_bg_r.svg)" }
+   ,{ "name": "url(./avatar/c41-0000.png)", "color": "url(./bg/clock_bg_g.svg)" }
+   ,{ "name": "url(./avatar/c42-0000.png)", "color": "url(./bg/clock_bg_o.svg)" }
+   ,{ "name": "url(./avatar/c43-0000.png)", "color": "url(./bg/clock_bg_p.svg)" }
+   ,{ "name": "url(./avatar/c44-0000.png)", "color": "url(./bg/clock_bg_r.svg)" }
+   ,{ "name": "url(./avatar/c45-0000.png)", "color": "url(./bg/clock_bg_0.svg)" }
+   ,{ "name": "url(./avatar/c46-0000.png)", "color": "url(./bg/clock_bg_r.svg)" }
+   ,{ "name": "url(./avatar/d01-0000.png)", "color": "url(./bg/clock_bg_0.svg)" }
+   ,{ "name": "url(./avatar/z01-0000.png)", "color": "url(./bg/clock_bg_y.svg)" }
+   ,{ "name": "url(./avatar/z02-0000.png)", "color": "url(./bg/clock_bg_y.svg)" }
+   ,{ "name": "url(./avatar/z03-0000.png)", "color": "url(./bg/clock_bg_b.svg)" }
+   ,{ "name": "url(./avatar/z04-0000.png)", "color": "url(./bg/clock_bg_w.svg)" }
+   ,{ "name": "url(./avatar/z05-0000.png)", "color": "url(./bg/clock_bg_b.svg)" }
+  ]
+}
+    `;
+    const jsonobj = JSON.parse(jsontxt).avatar_list;
+    const sleep = (time) => new Promise((resolve) => setTimeout(resolve, time));
+    let data;
+    let fnId;
+    let restSec = 60;
+    let loopFlag = false;
+    function showClock() {
+      let nowTime = new Date();
+      let nowHour = nowTime.getHours();
+      let nowMin  = nowTime.getMinutes();
+      let nowSec  = nowTime.getSeconds();
+      if (loopFlag && nowMin === 55) {
+        clearInterval(fnId);
+        window.location.reload();
+      }
+      restSec = 60 - nowSec;
+      let msg = ('00' + nowHour).slice(-2) + ":" + ('00' + nowMin).slice(-2);
+      document.getElementById("realtime").innerHTML = msg;
+      changeAvatar();
+    }
+    async function changeAvatar() {
+      let avatarStyle = document.getElementById("avatar").style;
+      let nextStyle = document.getElementById("avatar_next").style;
+      for (let i = 0; i < 10; i++) {
+        avatarStyle.opacity -= 0.1;
+        await sleep(50);
+      };
+      document.getElementById("bg").style.backgroundImage = document.getElementById("bg_next").style.backgroundImage;
+      avatarStyle.backgroundImage = nextStyle.backgroundImage;
+      let nextAvatar = selectNextAvatar();
+      document.getElementById("bg_next").style.backgroundImage = nextAvatar.color;
+      document.getElementById("bg_next").style.opacity = 0;
+      nextStyle.backgroundImage = nextAvatar.name;
+      nextStyle.opacity = 0;
+      avatarStyle.opacity = 1;
+    }
+    function selectNextAvatar() {
+      let idx = Math.floor(Math.random() * jsonobj.length);
+      while (jsonobj.length >= 2 && Number(document.getElementById("current_idx").innerHTML) === idx) {
+        idx = Math.floor(Math.random() * jsonobj.length);
+      }
+      document.getElementById("current_idx").innerHTML = idx;
+      return jsonobj[idx];
+    }
+    window.onload = async() => {
+      let firstAvatar = selectNextAvatar();
+      document.getElementById("bg_next").style.backgroundImage = firstAvatar.color;
+      document.getElementById("bg_next").style.opacity = 0;
+      document.getElementById("avatar_next").style.backgroundImage = firstAvatar.name;
+      document.getElementById("avatar_next").style.opacity = 0;
+      showClock();
+      await sleep(restSec * 1000);
+      showClock();
+      loopFlag = true;
+      fnId = setInterval('showClock()', 60000);
+    }
+  </script>
+</head>
+
+<body>
+  <div class="bg" id="bg"></div>
+  <div class="bg" id="bg_next"></div>
+  <div class="av" id="avatar"></div>
+  <div class="av" id="avatar_next"></div>
+  <div class="outer">
+    <div class="inner" id="realtime"></div>
+  </div>
+  <input type="hidden" id="current_idx" value="-1">
+</body>
+
+</html>
