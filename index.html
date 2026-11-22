@@ -6,7 +6,7 @@
   <title>clock</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400&family=Roboto+Mono:wght@700&display=swap" rel="stylesheet">
   <style>
     html {
       height: 100%;
@@ -59,6 +59,22 @@
       color: #004d4d;
       -webkit-text-stroke: 7px #ffffff;
     }
+    #realdate {
+      position: absolute;
+      left: 0;
+      right: 0;
+      text-align: center;
+      bottom: 4.45em;
+      font-family: 'Roboto Mono', monospace;
+      font-weight: 700;
+      font-size: 0.26em;
+      line-height: 1;
+      white-space: nowrap;
+      letter-spacing: 0;
+      text-indent: 0;
+      -webkit-text-stroke: 6px #ffffff;
+      paint-order: stroke fill;
+    }
   </style>
   <script>
     const jsontxt = `
@@ -94,6 +110,8 @@
       restSec = 60 - nowSec;
       let msg = ('00' + nowHour).slice(-2) + ":" + ('00' + nowMin).slice(-2);
       document.getElementById("realtime").innerHTML = msg;
+      document.getElementById("realdate").innerHTML =
+        ('00' + (nowTime.getMonth() + 1)).slice(-2) + "/" + ('00' + nowTime.getDate()).slice(-2);
       changeAvatar();
     }
     async function changeAvatar() {
@@ -141,7 +159,10 @@
   <div class="av" id="avatar"></div>
   <div class="av" id="avatar_next"></div>
   <div class="outer">
-    <div class="inner" id="realtime"></div>
+    <div class="inner">
+      <div id="realdate"></div>
+      <div id="realtime"></div>
+    </div>
   </div>
   <input type="hidden" id="current_idx" value="-1">
 </body>
